@@ -81,6 +81,7 @@ class MLCommunities:
             beta_df_temp = beta_df_temp.drop(['nodes', 'labels'], axis=1)
             beta_df = beta_df_temp
 
+
         if graph_data:
             # add edge and node number
             # not taking pca, only removing too small graphs.
