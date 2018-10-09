@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="76ef0e78-1861-4a1a-b3bd-66f6e3b6938e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataLoader/refael_data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataLoader/refael_data_loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/refael_learner.py" beforeDir="false" afterPath="$PROJECT_DIR$/refael_learner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/subgraph-ml/ml_communities.py" beforeDir="false" afterPath="$PROJECT_DIR$/subgraph-ml/ml_communities.py" afterDir="false" />
-    </list>
+    <list default="true" id="76ef0e78-1861-4a1a-b3bd-66f6e3b6938e" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,8 +105,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/refael_learner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-347">
-              <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+            <state relative-caret-position="635">
+              <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -122,8 +117,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/subgraph-ml/ml_communities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="113" column="115" lean-forward="true" selection-start-line="113" selection-start-column="115" selection-end-line="113" selection-end-column="115" />
+            <state relative-caret-position="-8">
+              <caret line="57" column="40" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -186,7 +181,6 @@
               <caret line="77" column="47" selection-start-line="77" selection-start-column="47" selection-end-line="77" selection-end-column="47" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
-                <marker date="1538934035043" expanded="true" signature="7002:7007" ph="..." />
               </folding>
             </state>
           </provider>
@@ -268,7 +262,7 @@
             <path>
               <item name="specific_al" type="b2602c69:ProjectViewProjectNode" />
               <item name="specific_al" type="462c0819:PsiDirectoryNode" />
-              <item name="parameter_check" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -285,10 +279,10 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Itay\Documents\Git\specific_al\data" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Itay\Documents\Git\specific_al\data" />
     </key>
   </component>
@@ -576,9 +570,7 @@
     <entry file="file://$PROJECT_DIR$/old_files_for_old_mofits/multi_graph_features.py" />
     <entry file="file://$PROJECT_DIR$/old_files_for_old_mofits/graphs_al.py" />
     <entry file="file://$PROJECT_DIR$/old_files_for_old_mofits/features_picker.py" />
-    <entry file="file://$PROJECT_DIR$/data_by_time/Refael/split_1/2004-02-17">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data_by_time/Refael/split_1/2004-02-17" />
     <entry file="file://$PROJECT_DIR$/multi-graph/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -616,9 +608,7 @@
     <entry file="file://$PROJECT_DIR$/data/DATABASE_FILE">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/Refael_07_18.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data/Refael_07_18.csv" />
     <entry file="file://$PROJECT_DIR$/graph-measures/features_infra/feature_calculators.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -629,33 +619,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_by_time/Refael/split_1/2004-02-15">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data_by_time/Refael/split_1/2004-02-15" />
     <entry file="file://$PROJECT_DIR$/DataLoader/refael_data_loader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
           <caret line="77" column="47" selection-start-line="77" selection-start-column="47" selection-end-line="77" selection-end-column="47" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <marker date="1538934035043" expanded="true" signature="7002:7007" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/refael_learner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-347">
-          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+        <state relative-caret-position="635">
+          <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parameter_check/results_train_p70.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/parameter_check/results_train_p70.csv" />
     <entry file="file://$USER_HOME$/Anaconda3/Lib/site-packages/xgboost/core.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
@@ -663,13 +648,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parameter_check/results_train_p70dart.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/parameter_check/results_train_p70dart.csv" />
     <entry file="file://$PROJECT_DIR$/subgraph-ml/ml_communities.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="113" column="115" lean-forward="true" selection-start-line="113" selection-start-column="115" selection-end-line="113" selection-end-column="115" />
+        <state relative-caret-position="-8">
+          <caret line="57" column="40" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
