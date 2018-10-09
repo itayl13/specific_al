@@ -70,7 +70,8 @@ class RefaelDataLoader:
         self.calc_all_times()       # calc all features for all times and save as pickle
         self._time_idx = 0
         # TOTAL NUMBER OF BLACK IN FINAL TIME
-        self.num_blacks =sum([val for key, val in Counter(self._all_times_data[- 1][0][3]).items() if key != self._white])
+        self.num_blacks = sum([val for key, val in Counter(self._all_times_data[- 1][0][3]).items()
+                               if key != self._white])
 
     # load from pkl or calculate and dump
     def calc_all_times(self):
@@ -87,7 +88,8 @@ class RefaelDataLoader:
 
     # init timed graph to time_0 - without calculating features/ beta-vectors
     def _init_timed_graph(self):
-        return TimedGraphs(self._params['database'], start_time=self._start_interval, files_path=self._params['files_path'],
+        return TimedGraphs(self._params['database'], start_time=self._start_interval,
+                           files_path=self._params['files_path'],
                            logger=self._logger, features_meta=AL_FEATURES,
                            directed=self._params['directed'], date_format=self._params['date_format'],
                            largest_cc=self._params['max_connected'])
@@ -99,7 +101,8 @@ class RefaelDataLoader:
             os.mkdir(DATA_TARGET_FOLDER)
         if self._params['database'] not in os.listdir(DATA_TARGET_FOLDER):
             os.mkdir(os.path.join(DATA_TARGET_FOLDER, self._params['database']))
-        if "split_" + str(self._time_split) not in os.listdir(os.path.join(DATA_TARGET_FOLDER, self._params['database'])):
+        if "split_" + str(self._time_split) not in \
+                os.listdir(os.path.join(DATA_TARGET_FOLDER, self._params['database'])):
             os.mkdir(os.path.join(DATA_TARGET_FOLDER, self._params['database'], "split_" + str(self._time_split)))
 
         # open basic data csv (with all edges of all times)
@@ -139,8 +142,9 @@ class RefaelDataLoader:
     def _calc_curr_time(self):
         # pick best features and calculate beta vectors
         beta = MotifRatio(self._timed_graph, is_directed=self._params['directed'])
-        return beta.beta_matrix(), self._timed_graph.nodes_count_list(), self._timed_graph.edges_count_list(), \
-               self._timed_graph.get_labels()
+        return beta.beta_matrix(), self._timed_graph.nodes_count_list(), \
+               self._timed_graph.edges_count_list(), self._timed_graph.get_labels()
+
 
     # function for outside user they are only returning pre-calculated beta/labels
     def calc_curr_time(self):

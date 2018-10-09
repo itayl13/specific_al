@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="76ef0e78-1861-4a1a-b3bd-66f6e3b6938e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataLoader/refael_data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataLoader/refael_data_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refael_learner.py" beforeDir="false" afterPath="$PROJECT_DIR$/refael_learner.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/subgraph-ml/ml_communities.py" beforeDir="false" afterPath="$PROJECT_DIR$/subgraph-ml/ml_communities.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -65,38 +67,40 @@
     <session id="981795903">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="18" />
+          <entry key="project.closed" value="23" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.open.time.4" value="9" />
-          <entry key="project.open.time.5" value="6" />
+          <entry key="project.open.time.4" value="12" />
+          <entry key="project.open.time.5" value="9" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="18" />
+          <entry key="project.opened" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="1869" />
-          <entry key="py" value="7246" />
+          <entry key="py" value="7887" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="9115" />
+          <entry key="Python" value="9756" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="2004-02-15" value="1" />
           <entry key="2004-02-17" value="1" />
-          <entry key="csv" value="25" />
+          <entry key="DATABASE_FILE" value="1" />
+          <entry key="csv" value="29" />
           <entry key="gitignore" value="3" />
-          <entry key="py" value="5" />
+          <entry key="py" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="29" />
-          <entry key="Python" value="5" />
+          <entry key="PLAIN_TEXT" value="35" />
+          <entry key="Python" value="6" />
         </counts>
       </usages-collector>
     </session>
@@ -106,8 +110,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/refael_learner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="47" column="80" selection-start-line="47" selection-start-column="80" selection-end-line="47" selection-end-column="80" />
+            <state relative-caret-position="-347">
+              <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -118,11 +122,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/subgraph-ml/ml_communities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="94" column="37" selection-start-line="94" selection-start-column="37" selection-end-line="94" selection-end-column="37" />
+            <state relative-caret-position="438">
+              <caret line="113" column="115" lean-forward="true" selection-start-line="113" selection-start-column="115" selection-end-line="113" selection-end-column="115" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1538591488082" expanded="true" signature="3321:3330" ph="..." />
               </folding>
             </state>
           </provider>
@@ -131,8 +134,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/subgraph-al/beta_calculator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="352">
+              <caret line="74" selection-start-line="74" selection-end-line="74" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -143,7 +146,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/multi-graph/timed_graphs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
+            <state relative-caret-position="-1473">
               <caret line="23" column="102" selection-start-line="23" selection-start-column="102" selection-end-line="23" selection-end-column="102" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
@@ -155,7 +158,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/multi-graph/timed_multi_graph_features.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1530">
+            <state relative-caret-position="-68">
               <caret line="97" selection-start-line="97" selection-end-line="97" />
               <folding>
                 <element signature="e#253#268#0" expanded="true" />
@@ -167,8 +170,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/graph-measures/features_infra/feature_calculators.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1122">
-              <caret line="75" column="33" selection-start-line="75" selection-start-column="33" selection-end-line="75" selection-end-column="33" />
+            <state relative-caret-position="336">
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -179,11 +182,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DataLoader/refael_data_loader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="806">
-              <caret line="140" column="15" selection-start-line="140" selection-start-column="15" selection-end-line="140" selection-end-column="15" />
+            <state relative-caret-position="188">
+              <caret line="77" column="47" selection-start-line="77" selection-start-column="47" selection-end-line="77" selection-end-column="47" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
-                <marker date="1538578928757" expanded="true" signature="6925:6930" ph="..." />
+                <marker date="1538934035043" expanded="true" signature="7002:7007" ph="..." />
               </folding>
             </state>
           </provider>
@@ -215,6 +218,8 @@
       <find>timed</find>
       <find>os</find>
       <find>_calc_curr_time_</find>
+      <find>data_</find>
+      <find>data_by</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -227,11 +232,11 @@
         <option value="$PROJECT_DIR$/multi-graph/timed_graphs.py" />
         <option value="$PROJECT_DIR$/multi-graph/timed_multi_graph_features.py" />
         <option value="$PROJECT_DIR$/subgraph-al/beta_calculator.py" />
-        <option value="$PROJECT_DIR$/refael_learner.py" />
         <option value="$PROJECT_DIR$/DataLoader/refael_data_loader_old.py" />
         <option value="$PROJECT_DIR$/old_files_for_old_mofits/features_picker.py" />
         <option value="$PROJECT_DIR$/old_files_for_old_mofits/graphs_al.py" />
         <option value="$PROJECT_DIR$/old_files_for_old_mofits/multi_graph_features.py" />
+        <option value="$PROJECT_DIR$/refael_learner.py" />
         <option value="$PROJECT_DIR$/DataLoader/refael_data_loader.py" />
         <option value="$PROJECT_DIR$/subgraph-ml/ml_communities.py" />
       </list>
@@ -244,8 +249,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="254" />
-    <option name="y" value="66" />
+    <option name="x" value="960" />
     <option name="width" value="960" />
     <option name="height" value="1040" />
   </component>
@@ -261,6 +265,11 @@
               <item name="specific_al" type="b2602c69:ProjectViewProjectNode" />
               <item name="specific_al" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="specific_al" type="b2602c69:ProjectViewProjectNode" />
+              <item name="specific_al" type="462c0819:PsiDirectoryNode" />
+              <item name="parameter_check" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -273,9 +282,12 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Itay\Documents\Git\specific_al\data" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Itay\Documents\Git\specific_al\data" />
     </key>
@@ -453,13 +465,13 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.124801695" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22522523" />
       <window_info id="Structure" order="1" weight="0.24960339" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.27232143" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.375" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.29452056" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.38181818" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
@@ -550,16 +562,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/Refael_07_18.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/parameter_check/DART_results_train_p70.csv" />
     <entry file="file://$PROJECT_DIR$/parameter_check/slicing_parameters.csv" />
-    <entry file="file://$PROJECT_DIR$/parameter_check/results_train_p70.csv" />
     <entry file="file://$PROJECT_DIR$/parameter_check/p_check.csv" />
     <entry file="file://$PROJECT_DIR$/DataLoader/refael_data_loader_old.py" />
     <entry file="file://$PROJECT_DIR$/subgraph-al/timed_active_learning.py">
@@ -578,36 +582,10 @@
     <entry file="file://$PROJECT_DIR$/multi-graph/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="13" lean-forward="true" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/refael_learner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="47" column="80" selection-start-line="47" selection-start-column="80" selection-end-line="47" selection-end-column="80" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/subgraph-al/beta_calculator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore" />
     <entry file="file://$PROJECT_DIR$/multi-graph/timed_graphs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
+        <state relative-caret-position="-1473">
           <caret line="23" column="102" selection-start-line="23" selection-start-column="102" selection-end-line="23" selection-end-column="102" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
@@ -617,7 +595,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/multi-graph/timed_multi_graph_features.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
+        <state relative-caret-position="-68">
           <caret line="97" selection-start-line="97" selection-end-line="97" />
           <folding>
             <element signature="e#253#268#0" expanded="true" />
@@ -625,34 +603,75 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graph-measures/features_infra/feature_calculators.py">
+    <entry file="file://$PROJECT_DIR$/subgraph-al/beta_calculator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="75" column="33" selection-start-line="75" selection-start-column="33" selection-end-line="75" selection-end-column="33" />
+        <state relative-caret-position="352">
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DataLoader/refael_data_loader.py">
+    <entry file="file://$PROJECT_DIR$/data/DATABASE_FILE">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/Refael_07_18.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph-measures/features_infra/feature_calculators.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="806">
-          <caret line="140" column="15" selection-start-line="140" selection-start-column="15" selection-end-line="140" selection-end-column="15" />
+        <state relative-caret-position="336">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
           <folding>
-            <element signature="e#0#31#0" expanded="true" />
-            <marker date="1538578928757" expanded="true" signature="6925:6930" ph="..." />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data_by_time/Refael/split_1/2004-02-15">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataLoader/refael_data_loader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="77" column="47" selection-start-line="77" selection-start-column="47" selection-end-line="77" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+            <marker date="1538934035043" expanded="true" signature="7002:7007" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/refael_learner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-347">
+          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parameter_check/results_train_p70.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/Lib/site-packages/xgboost/core.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="150" selection-start-line="150" selection-end-line="150" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parameter_check/results_train_p70dart.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/subgraph-ml/ml_communities.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="94" column="37" selection-start-line="94" selection-start-column="37" selection-end-line="94" selection-end-column="37" />
+        <state relative-caret-position="438">
+          <caret line="113" column="115" lean-forward="true" selection-start-line="113" selection-start-column="115" selection-end-line="113" selection-end-column="115" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1538591488082" expanded="true" signature="3321:3330" ph="..." />
           </folding>
         </state>
       </provider>
