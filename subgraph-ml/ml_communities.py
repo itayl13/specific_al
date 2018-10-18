@@ -2,6 +2,7 @@ import csv
 import os
 import warnings
 from enum import Enum
+from operator import itemgetter
 
 from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import train_test_split
@@ -12,6 +13,7 @@ import numpy as np
 import itertools
 from sklearn.decomposition import PCA
 from sklearn.model_selection import ShuffleSplit, cross_val_score, StratifiedShuffleSplit
+from scipy.stats import spearmanr
 from sklearn.svm import SVC
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestClassifier
@@ -19,7 +21,6 @@ import xgboost as xgb
 
 # In my version, the following isn't ignored by default.
 warnings.filterwarnings(module='sklearn*', action='ignore', category=DeprecationWarning)
-
 
 REBUILD_FEATURES = False
 RE_PICK_FTR = False
@@ -60,7 +61,8 @@ class MLCommunities:
         if self._method.value == LearningMethod.SVM.value:
             self._learn_SVM(self._pca_df(self._best_beta_df, graph_data=True, min_nodes=5))
         if self._method.value == LearningMethod.XGBOOST.value:
-            return self._learn_XGBoost_p(self._pca_df(self._best_beta_df, graph_data=True, min_nodes=10))
+            return self._learn_XGBoost_p(self._pca_df(self._best_beta_df, graph_data=True, min_nodes=10),
+                                         feature_selection=20)
 
     def _beta_matrix_to_df(self, header):
         # create header
@@ -81,7 +83,6 @@ class MLCommunities:
             beta_df_temp = beta_df_temp.drop(['nodes', 'labels'], axis=1)
             beta_df = beta_df_temp
 
-
         if graph_data:
             # add edge and node number
             # not taking pca, only removing too small graphs.
@@ -90,32 +91,32 @@ class MLCommunities:
 
         return beta_df
 
-    def _learn_XGBoost_p(self, principalComponents):
+    def _learn_XGBoost_p(self, principalComponents, feature_selection: int = 0):
         if not os.path.exists(os.path.join(os.getcwd(), 'parameter_check')):
             os.mkdir('parameter_check')
         # train percentage
         for train_p in [70]:
-            f = open(os.path.join(os.getcwd(), 'parameter_check', "results_train_p"+str(train_p)+"dart"+".csv"), 'w')
+            f = open(os.path.join(os.getcwd(), 'parameter_check', "results_train_p" + str(train_p) + "gbtree.csv"), 'w')
             w = csv.writer(f)
-            w.writerow(['max_depth', 'lambda', 'eta', 'min child weight', 'subsample', 'ntree_limit', 'sample type',
-                        'normalize type', 'rate drop', 'train_AUC', 'test_AUC'])
-            for max_depth, l, eta, min_child_weight, subsample, ntree_limit, sample_type, normalize_type, rate_drop in \
-                    itertools.product(range(3, 12, 4), range(1, 26, 6), np.logspace(-3, -0.5, 5), range(5, 21, 5),
-                                      range(5, 11), range(1, 121, 40), ['uniform', 'weighted'], ['tree', 'forest'],
-                                      range(2, 9, 2)):
+            w.writerow(['lambda', 'eta', 'max depth', 'subsample', 'ntree limit', 'min child weight',
+                        'train_AUC', 'test_AUC'])
+            count = 0
+            for l, eta, max_depth, subsample, ntree_limit, min_child_weight in \
+                    itertools.product(range(1, 21, 5), range(1, 30, 5), range(4, 11), range(5, 11), np.logspace(1, 3, 5)
+                        , np.logspace(1, 2, 4)):
                 auc_train = []
                 auc_test = []
-                for num_splits in range(1, 101):
+                for num_splits in range(1, 501):
                     X_train, X_test, y_train, y_test = train_test_split(principalComponents, self.labels,
-                                                                        test_size=1-float(train_p)/100)
+                                                                        test_size=1 - float(train_p) / 100)
+                    if feature_selection:
+                        X_train, X_test = self._feature_selection(X_train, X_test, y_train, feature_selection)
                     X_train, X_eval, y_train, y_eval = train_test_split(X_train, y_train, test_size=0.1)
                     dtrain = xgb.DMatrix(X_train, y_train, silent=True)
                     dtest = xgb.DMatrix(X_test, y_test, silent=True)
                     deval = xgb.DMatrix(X_eval, y_eval, silent=True)
-                    params = {'silent': True, 'booster': 'dart', 'tree_method': 'gpu_hist', 'max_depth': max_depth,
-                              'lambda': l/10, 'eta': eta, 'min_child_weight': min_child_weight,
-                              'subsample': subsample/10, 'sample_type': sample_type, 'normalize_type': normalize_type,
-                              'rate_drop': rate_drop/10}
+                    params = {'silent': True, 'booster': 'gbtree', 'lambda': l / 10, 'eta': eta / 100,
+                              'max_depth': max_depth, 'subsample': subsample / 10, 'min_child_weight': min_child_weight}
                     clf_xgb = xgb.train(params, dtrain=dtrain, evals=[(dtrain, 'train'), (deval, 'eval')],
                                         early_stopping_rounds=10, verbose_eval=False)
                     y_score_test = clf_xgb.predict(dtest, ntree_limit=ntree_limit)
@@ -132,25 +133,29 @@ class MLCommunities:
                     except ValueError:
                         continue
                     auc_train.append(r2)
-                w.writerow([str(max_depth), str(l/10), str(eta), str(min_child_weight),
-                            str(subsample/10), str(ntree_limit), str(sample_type), str(normalize_type),
-                            str(rate_drop/10), str(np.mean(auc_train)), str(np.mean(auc_test))])
+                w.writerow([str(x) for x in [l/10, eta/100, max_depth, subsample/10, ntree_limit, min_child_weight, np.mean(auc_train), np.mean(auc_test)]])
+                count = count + 1
+                print("iteration count: " + str(count))
         return None
 
-    def _learn_XGBoost(self, principalComponents):
+    def _learn_XGBoost(self, principalComponents, feature_selection: int = 0):
         df = pd.DataFrame()
         # train percentage
         for train_p in range(30, 90, 10):
             auc_train = []
             auc_test = []
-            for num_splits in range(1, 501):
+            for num_splits in range(1, 101):
                 X_train, X_test, y_train, y_test = train_test_split(principalComponents, self.labels,
-                                                                    test_size=1-float(train_p)/100)
+                                                                    test_size=1 - float(train_p) / 100)
+                if feature_selection:
+                    X_train, X_test = self._feature_selection(X_train, X_test, y_train, feature_selection)
                 X_train, X_eval, y_train, y_eval = train_test_split(X_train, y_train, test_size=0.1)
                 dtrain = xgb.DMatrix(X_train, y_train, silent=True)
                 dtest = xgb.DMatrix(X_test, y_test, silent=True)
                 deval = xgb.DMatrix(X_eval, y_eval, silent=True)
-                params = {'silent': True, 'booster': 'gblinear', 'lambda': 0.7, 'eta': 0.39}
+                params = {'silent': True, 'booster': 'gblinear', 'lambda': 0.45, 'eta': 0.3, 'updater': 'coord_descent',
+                          'feature_selector': 'random'}
+                # got a little worse results with (faster learning): lambda=0.7, eta=0.29, shotgun and cyclic.
                 clf_xgb = xgb.train(params, dtrain=dtrain, evals=[(dtrain, 'train'), (deval, 'eval')],
                                     early_stopping_rounds=10, verbose_eval=False)
                 y_score_test = clf_xgb.predict(dtest)
@@ -170,9 +175,19 @@ class MLCommunities:
             df1 = pd.DataFrame([[train_p, np.mean(auc_train), np.mean(auc_test)]],
                                columns=['train_p', 'train_auc', 'test_auc'])
             df = pd.concat([df, df1])
-            print(['train: ' + str(train_p) +'%', 'Train AUC: ' + str(np.mean(auc_train)),
+            print(['train: ' + str(train_p) + '%', 'Train AUC: ' + str(np.mean(auc_train)),
                    'Test AUC: ' + str(np.mean(auc_test))])
         return df
+
+    def _feature_selection(self, X_train, X_test, y_train, feature_selection):
+        corrs = [(i, abs(spearmanr(X_train[:, i], y_train)[0])) for i in range(np.shape(X_train)[1])]
+        corrs.sort(key=itemgetter(1), reverse=True)
+        new_train = np.array(X_train[:, corrs[0][0]])
+        new_test = np.array(X_test[:, corrs[0][0]])
+        for f in range(1, feature_selection):
+            new_train = np.hstack((new_train, X_train[:, corrs[f][0]]))
+            new_test = np.hstack((new_test, X_test[:, corrs[f][0]]))
+        return new_train, new_test
 
     def _learn_SVM(self, principalComponents):
         df = pd.DataFrame(columns=['C', 'train_p', 'mean_auc'])

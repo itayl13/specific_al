@@ -43,14 +43,15 @@ class RefaelLearner:
         # df = pd.DataFrame()
         time = 0
         while self._database.forward_time():
-            print("-----------------------------------    TIME " + str(time) + "    ----------------------------------")
+            # print("-----------------------------------    TIME " + str(time) + "    ----------------------------------")
             time += 1
             beta_matrix, nodes_list, edges_list, labels = self._database.calc_curr_time()
             self._ml_learner.forward_time_data(beta_matrix, nodes_list, edges_list, labels)
+        print('starting to learn')
         self._ml_learner.run()
             # df = pd.concat([df, self._ml_learner.run()])
         # if not os.path.exists('results'):
-        #    os.mkdir('results')
+        #     os.mkdir('results')
         # writer = pd.ExcelWriter(os.path.join(os.getcwd(), 'results', 'time_run.xlsx'))
         # df.to_excel(writer, sheet_name='Sheet1', index=False)
         # writer.save()

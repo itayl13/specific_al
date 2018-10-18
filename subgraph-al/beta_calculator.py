@@ -60,13 +60,13 @@ class MotifRatio:
         # self._graph_order = graph_order if graph_order else [g for g in sorted(graph_ftr_dict)]
         self._graphs = graphs
         # list index in motif to number of edges in the motif
-        self._motif_index_to_edge_num = {"motif3": self._motif_num_to_number_of_edges(3),
-                                         "motif4": self._motif_num_to_number_of_edges(4)}
+        # self._motif_index_to_edge_num = {"motif3": self._motif_num_to_number_of_edges(3),
+        #                                  "motif4": self._motif_num_to_number_of_edges(4)}
         self._build()
 
     def _build(self):
         # get vector for each graph and stack theme
-        self._beta_matrix = np.vstack([self._feature_vector(g_id) for g_id in self._graphs.graph_names()])
+        self._beta_matrix = np.vstack([self._feature_vector_(g_id) for g_id in self._graphs.graph_names()])
         # TODO -- PCA + add node and edges data -- not working so good for now
         # pca = PCA(n_components=self._pca_n_component)
         # self._beta_matrix = pca.fit_transform(self._beta_matrix)
@@ -127,13 +127,24 @@ class MotifRatio:
                 final_vec[0, i] = np.sum(ftr_mx[:, i]) / ftr_mx.shape[0]
         return final_vec
 
+    def _feature_vector_(self, gid):
+        gnx, gnx_ftr = self._graphs.features_matrix(gid)
+        ftr_mx = gnx_ftr.to_matrix(dtype=np.float32, mtype=np.matrix, should_zscore=True)
+        final_vec = np.zeros((1, ftr_mx.shape[1]))
+
+        self._set_index_to_ftr(gnx, gnx_ftr)
+
+        for i in enumerate(self._index_ftr):
+                final_vec[0, i[0]] = np.sum(ftr_mx[:, i[0]]) / ftr_mx.shape[0]
+        return final_vec
+
     # return { motif_index: sum motif in index/ total motifs with same edge count }
     def _count_subgraph_motif_by_size(self, ftr_mat, motif_type):
         sum_dict = {ftr_count: np.sum(ftr_mat[:, i]) for i, (ftr, ftr_count) in enumerate(self._index_ftr)
                     if ftr == motif_type}       # dictionary { motif_index: sum column }
         sum_by_edge = {}                        # dictionary { num_edges_in_motif: sum of  }
         for motif_count, sum_motif in sum_dict.items():
-            key = self._motif_index_to_edge_num[motif_type][motif_count]
+            key = self._motif_index_to_edge_num[motif_type][motif_count]  # Don't forget self._motif_index_to_edge_num
             sum_by_edge[key] = sum_by_edge.get(key, 0) + sum_motif
         # rewrite dictionary { motif_index: sum column/ total motifs with same edge count }
         for motif_count in sum_dict:
