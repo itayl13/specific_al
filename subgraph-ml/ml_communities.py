@@ -96,31 +96,32 @@ class MLCommunities:
             os.mkdir('parameter_check')
         # train percentage
         for train_p in [70]:
-            f = open(os.path.join(os.getcwd(), 'parameter_check', "results_train_p" + str(train_p) + "gbtree.csv"), 'w')
+            f = open(os.path.join(os.getcwd(), 'parameter_check', "results_train_p" + str(train_p) +
+                                  "gbtree_num_ftrs_check_md=8_mcw=22.csv"), 'w')
             w = csv.writer(f)
-            w.writerow(['lambda', 'eta', 'max depth', 'subsample', 'ntree limit', 'min child weight',
+            w.writerow(['lambda', 'eta', 'ntree limit', 'subsample', 'number of features selected',
                         'train_AUC', 'test_AUC'])
             count = 0
-            for l, eta, max_depth, subsample, ntree_limit, min_child_weight in \
-                    itertools.product(range(1, 21, 5), range(1, 30, 5), range(4, 11), range(5, 11), np.logspace(1, 3, 5)
-                        , np.logspace(1, 2, 4)):
+            for l, eta, ntree_limit, subsample, ftrs in \
+                    itertools.product(range(1, 22, 10), range(30, 41, 5), [10, 25, 50, 80, 100, 150, 200],
+                                      range(4, 11, 2), [0, 10, 20, 40, 80, 100, 120, 150, 180, 200]):
                 auc_train = []
                 auc_test = []
-                for num_splits in range(1, 501):
+                for num_splits in range(1, 201):
                     X_train, X_test, y_train, y_test = train_test_split(principalComponents, self.labels,
                                                                         test_size=1 - float(train_p) / 100)
-                    if feature_selection:
-                        X_train, X_test = self._feature_selection(X_train, X_test, y_train, feature_selection)
+                    if ftrs:
+                        X_train, X_test, selected_ftrs = self._feature_selection(X_train, X_test, y_train, ftrs)
                     X_train, X_eval, y_train, y_eval = train_test_split(X_train, y_train, test_size=0.1)
                     dtrain = xgb.DMatrix(X_train, y_train, silent=True)
                     dtest = xgb.DMatrix(X_test, y_test, silent=True)
                     deval = xgb.DMatrix(X_eval, y_eval, silent=True)
-                    params = {'silent': True, 'booster': 'gbtree', 'lambda': l / 10, 'eta': eta / 100,
-                              'max_depth': max_depth, 'subsample': subsample / 10, 'min_child_weight': min_child_weight}
+                    params = {'silent': True, 'booster': 'gbtree', 'lambda': l / 10, 'eta': eta / 100, 'max_depth': 8,
+                              'min_child_weight': 22, 'ntree_limit': ntree_limit, 'subsample': subsample / 10}
                     clf_xgb = xgb.train(params, dtrain=dtrain, evals=[(dtrain, 'train'), (deval, 'eval')],
                                         early_stopping_rounds=10, verbose_eval=False)
-                    y_score_test = clf_xgb.predict(dtest, ntree_limit=ntree_limit)
-                    y_score_train = clf_xgb.predict(dtrain, ntree_limit=ntree_limit)
+                    y_score_test = clf_xgb.predict(dtest)
+                    y_score_train = clf_xgb.predict(dtrain)
                     # ROC AUC has a problem with only one class
                     try:
                         r1 = roc_auc_score(y_test, y_score_test)
@@ -133,7 +134,8 @@ class MLCommunities:
                     except ValueError:
                         continue
                     auc_train.append(r2)
-                w.writerow([str(x) for x in [l/10, eta/100, max_depth, subsample/10, ntree_limit, min_child_weight, np.mean(auc_train), np.mean(auc_test)]])
+                w.writerow([str(x) for x in [l/10, eta/100, ntree_limit, subsample/10,
+                                             ftrs, np.mean(auc_train), np.mean(auc_test)]])
                 count = count + 1
                 print("iteration count: " + str(count))
         return None
@@ -148,7 +150,7 @@ class MLCommunities:
                 X_train, X_test, y_train, y_test = train_test_split(principalComponents, self.labels,
                                                                     test_size=1 - float(train_p) / 100)
                 if feature_selection:
-                    X_train, X_test = self._feature_selection(X_train, X_test, y_train, feature_selection)
+                    X_train, X_test, selected_ftrs = self._feature_selection(X_train, X_test, y_train, feature_selection)
                 X_train, X_eval, y_train, y_eval = train_test_split(X_train, y_train, test_size=0.1)
                 dtrain = xgb.DMatrix(X_train, y_train, silent=True)
                 dtest = xgb.DMatrix(X_test, y_test, silent=True)
@@ -184,10 +186,12 @@ class MLCommunities:
         corrs.sort(key=itemgetter(1), reverse=True)
         new_train = np.array(X_train[:, corrs[0][0]])
         new_test = np.array(X_test[:, corrs[0][0]])
+        selected_ftrs = [corrs[0]]
         for f in range(1, feature_selection):
             new_train = np.hstack((new_train, X_train[:, corrs[f][0]]))
             new_test = np.hstack((new_test, X_test[:, corrs[f][0]]))
-        return new_train, new_test
+            selected_ftrs.append(corrs[f])
+        return new_train, new_test, selected_ftrs
 
     def _learn_SVM(self, principalComponents):
         df = pd.DataFrame(columns=['C', 'train_p', 'mean_auc'])
